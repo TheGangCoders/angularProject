@@ -1,0 +1,294 @@
+<div class="content-wrapper px-4 py-2">
+    <div class="content-header">
+        <h1 class="text-dark" style="background-color: #A5C066;color: white !important; padding: 10px;">{{main_title}} Venta de productos</h1>
+        
+    </div>
+    <div class="content px-2">
+        <div style="padding-bottom: 5px;"></div>
+        <div>
+            <ng-container mPortletHeadTools>
+                <div class="m-form__control">
+                    <button style="float: right; align-items: center;" mat-button color="bg-blue" mat-button type="button" 
+                        (click)="go_back()"
+                        matTooltip="Regresar al listado">
+                        <mat-icon style="align-items: center;">keyboard_backspace</mat-icon> Volver 
+                    </button>
+                </div>
+            </ng-container>
+            <br>
+            <ng-container mPortletBody>
+                <form [formGroup]="formMACRO" (ngSubmit)="onSubmit()" class="m-form m-form--group-seperator-dashed">
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <!-- <h4 style="background-color: #50B2D1;color: white !important; padding: 10px;">Datos Generales
+                            </h4>
+                            <div class="row">
+                                <div class="col-sm-3 m--margin-bottom-10-mobile">
+                                  <mat-form-field class="example-full-width">
+                                    <mat-select #singleSelect class="mat-form-field mat-form-field-fluid" formControlName="DocumentoCompra" placeholder="Documento Compra" [disabled]="glb_disabled">
+                                      <mat-option value=27E6094A-0CB2-44A2-BA98-A12EE39AA13A>Factura</mat-option>
+                                      <mat-option value=A0243AA2-2584-48C4-AFAE-FD5F5316817E>Boleta</mat-option>
+                                    </mat-select>
+                                    <mat-hint align="start" [hidden]="formMACRO.controls['DocumentoCompra'].value">Por favor Seleccione
+                                      <strong>Documento de compra</strong>
+                                    </mat-hint>
+                                    <mat-error>Documento de compra
+                                        <strong>es obligatorio.</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                                </div>
+          
+                                <div class="col-sm-2 m--margin-bottom-10-mobile">
+                                    <mat-form-field class="col-md-12 search-form-field">
+                                        <input type="text"  formControlName="Serie" placeholder="Serie" matInput required  [readonly]="glb_disabled">
+                                        <mat-error>
+                                                Serie
+                                            <strong>es obligatorio.</strong>
+                                        </mat-error>
+                                        <mat-hint align="start" [hidden]="formMACRO.controls['Serie'].value">Por favor Ingrese
+                                            <strong>Serie</strong>
+                                        </mat-hint>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-2 m--margin-bottom-10-mobile">
+                                    <mat-form-field class="col-md-12 search-form-field">
+                                        <input type="number"  formControlName="Numero" placeholder="Número" matInput required  [readonly]="glb_disabled">
+                                        <mat-error>
+                                                Número de factura/boleta
+                                            <strong>es obligatorio.</strong>
+                                        </mat-error>
+                                        <mat-hint align="start" [hidden]="formMACRO.controls['Numero'].value">Por favor Ingrese
+                                            <strong>Número de factura/boleta</strong>
+                                        </mat-hint>
+                                    </mat-form-field>
+                                </div>
+          
+                                <div class="col-sm-2 m--margin-bottom-10-mobile">
+                                    <mat-form-field class="col-md-12 search-form-field">
+                                      <mat-select #singleSelect class="mat-form-field mat-form-field-fluid" formControlName="Moneda" placeholder="Moneda"  [disabled]="glb_disabled">
+                                        <mat-option value='CD125C9F-E2BB-47DA-8FCF-59E966E81706'>Soles</mat-option>
+                                      </mat-select>
+                                      <mat-hint align="start" [hidden]="formMACRO.controls['Moneda'].value">Por favor Seleccione
+                                        <strong>Moneda</strong>
+                                      </mat-hint>
+                                      <mat-error>Moneda
+                                          <strong>es obligatorio.</strong>
+                                      </mat-error>
+                                    </mat-form-field>
+                                  </div>
+          
+                                  <div class="col-md-3 m--margin-bottom-10-mobile">
+                                    <mat-form-field class="col-md-12 search-form-field">
+                                        <mat-select #singleSelect class="mat-form-field mat-form-field-fluid" formControlName="Proveedor" placeholder="Proveedor"  [disabled]="glb_disabled">
+                                            <mat-option>
+                                                <ngx-mat-select-search [formControl]="filterProveedor" [placeholderLabel]="'Buscar...'" [noEntriesFoundLabel]="'No se encontró resultado'"></ngx-mat-select-search>
+                                            </mat-option>
+                                            <mat-option *ngFor="let proveedor of filteredProveedor | async" [value]="proveedor.proveedorId">
+                                                {{proveedor.descripcion}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error>
+                                          Proveedor
+                                            <strong>es obligatorio.</strong>
+                                        </mat-error>
+                                        <mat-hint align="start" [hidden]="formMACRO.controls['Proveedor'].value">Por favor seleccione
+                                            <strong>Proveedor</strong>
+                                        </mat-hint>
+                                    </mat-form-field>
+                                </div> -->
+                            <!-- </div> -->
+                            <br>
+                            <hr>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </form>
+                <div class="col-md-12">
+                    <ng-container mPortletHeadTitle >
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text" style="background-color: #50B2D1; color: white; padding: 20px;">
+                                Detalle de materiales
+                                <button style="float: right;" type="button" [hidden]="hide_insert" (click)="add_Deta()" matTooltip="Agregar Valor" color="bg-blue" mat-mini-fab [disabled]="glb_disabled">
+                                    <mat-icon>{{icon_detail}}</mat-icon>
+                                </button> &nbsp;
+                                <button style="float: right; padding-left: 5px;" type="button" matTooltip="Limpiar" color="bg-yellow" (click)="cleanDeta()" mat-mini-fab [disabled]="glb_disabled">     
+                                    <i class="fas fa-eraser"></i>
+                                </button>
+                            </h3>
+                        </div>
+                    </ng-container>
+                    <ng-container mPortletBody>
+                        <div class="m-form__filtration">
+                            <div class="row align-items-center">                        
+                                <form [formGroup]="formDETA" class="col-sm-12 m-form m-form--group-seperator-dashed">
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-11">
+                                            <!--<mat-card>-->
+                                                <div class="row">
+                                                    <div class="col-md-4 m--margin-bottom-10-mobile">
+                                                        <mat-form-field class="col-md-12 search-form-field">
+                                                            <mat-select #singleSelect class="mat-form-field mat-form-field-fluid" formControlName="Material" placeholder="Material" [disabled]="glb_disabled">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [formControl]="filterMateriles" [placeholderLabel]="'Buscar...'" [noEntriesFoundLabel]="'No se encontró resultado'"></ngx-mat-select-search>
+                                                                </mat-option>
+                                                                <mat-option *ngFor="let material of filteredMateriales | async" [value]="material.materialId" (onSelectionChange)="changeModulo($event, material.precioActual)">
+                                                                    {{material.materialDescripcion}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                            <mat-error>
+                                                              Material
+                                                                <strong>es obligatorio.</strong>
+                                                            </mat-error>
+                                                            <mat-hint align="start" [hidden]="formDETA.controls['Material'].value">Por favor seleccione
+                                                                <strong>Material</strong>
+                                                            </mat-hint>
+                                                        </mat-form-field>
+                                                      </div>
+                                                  
+                                                    <div class="col-sm-2 m--margin-bottom-10-mobile">
+                                                        <mat-form-field class="col-md-12 search-form-field">
+                                                            <input formControlName="Cantidad" placeholder="Cantidad" matInput required [readonly]="glb_disabled">
+                                                            <mat-error>
+                                                                Cantidad
+                                                                <strong>es obligatorio.</strong>
+                                                            </mat-error>
+                                                            <mat-hint align="start" [hidden]="formDETA.controls['Cantidad'].value">Por favor ingrese
+                                                                <strong>Cantidad</strong>
+                                                            </mat-hint>
+                                                        </mat-form-field>
+                                                    </div>
+      
+                                                    <div class="col-sm-2 m--margin-bottom-10-mobile">
+                                                        <mat-form-field class="col-md-12 search-form-field">
+                                                            <input type="number" formControlName="Precio" placeholder="Precio" matInput required [readonly]="glb_disabled">
+                                                            <mat-error>
+                                                                Precio
+                                                                <strong>es obligatorio.</strong>
+                                                            </mat-error>
+                                                            <mat-hint align="start" [hidden]="formDETA.controls['Precio'].value">Por favor ingrese
+                                                                <strong>Precio</strong>
+                                                            </mat-hint>
+                                                        </mat-form-field>
+                                                    </div>
+
+                                                    <div class="col-sm-2 m--margin-bottom-10-mobile">
+                                                        <mat-form-field class="col-md-12 search-form-field" hidden>
+                                                            <input formControlName="Observacion" placeholder="Observacion" matInput>
+                                                            <mat-error>
+                                                                Observacion
+                                                                <strong>es obligatorio.</strong>
+                                                            </mat-error>
+                                                            <mat-hint align="start" [hidden]="formDETA.controls['Observacion'].value">Por favor ingrese
+                                                                <strong>Observacion</strong>
+                                                            </mat-hint>
+                                                        </mat-form-field>
+                                                    </div>
+
+                                                    
+                                                </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                    <div class="col-sm-12">
+                                        <div class="mat-table__wrapper" style="margin-top: 20px;">
+                                            <mat-table [dataSource]="listData" matSort perfectScrollbar>
+                                    
+                                                    <ng-container matColumnDef="Nro">
+                                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Nro</mat-header-cell>
+                                                        <mat-cell *matCellDef="let lesson">{{getNumber_byItem(lesson)}}</mat-cell>
+                                                    </ng-container>
+                                    
+                                                    <ng-container matColumnDef="Material">
+                                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Material</mat-header-cell>
+                                                        <mat-cell *matCellDef="let lesson">{{lesson.materialDes}}</mat-cell>
+                                                    </ng-container>
+      
+                                                    <ng-container matColumnDef="Cantidad">
+                                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Cantidad</mat-header-cell>
+                                                        <mat-cell *matCellDef="let lesson">{{lesson.cantidad}}</mat-cell>
+                                                    </ng-container>
+      
+                                                    <ng-container matColumnDef="Precio">
+                                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Precio</mat-header-cell>
+                                                        <mat-cell *matCellDef="let lesson">{{lesson.precio}}</mat-cell>
+                                                    </ng-container>
+
+                                                    <ng-container matColumnDef="Observacion">
+                                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Observacion</mat-header-cell>
+                                                        <mat-cell *matCellDef="let lesson">{{lesson.observacion}}</mat-cell>
+                                                    </ng-container>
+      
+                                                    <ng-container matColumnDef="Activo">
+                                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Activo</mat-header-cell>
+                                                        <mat-cell *matCellDef="let lesson">
+                                                            <span class="m-badge m-badge--{{ getCssClassByEstado(lesson.activo) }} m-badge--wide">{{getEstadoString(lesson.activo)}}</span>
+                                                        </mat-cell>
+                                                    </ng-container>
+                                                        
+                                                    <ng-container matColumnDef="Actions" >
+                                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Acciones</mat-header-cell>
+                                    
+                                                        <mat-cell *matCellDef="let lesson">
+                                                            <button *ngIf="lesson.activo" mat-icon-button [hidden]="general_disable" type="button" style="color: #00A09D !important" 
+                                                            (click)="get_detail(lesson)" matTooltip="Editar" [disabled]="glb_disabled">
+                                                                <mat-icon>edit</mat-icon>
+                                                            </button>
+                                                            &nbsp;
+                                                            <button *ngIf="lesson.activo" mat-icon-button [hidden]="general_disable" style="color: #b7343d !important" type="button" 
+                                                            (click)="delete_detail(lesson)" matTooltip="Anular" [disabled]="glb_disabled">
+                                                                <mat-icon>delete</mat-icon>
+                                                            </button>
+      
+                                                            <button *ngIf="!lesson.activo" mat-icon-button style="color: #b7343d !important" type="button" 
+                                                            (click)="add_detail(lesson)" matTooltip="Dar de Alta" [disabled]="glb_disabled">
+                                                                <mat-icon>done</mat-icon>
+                                                            </button>
+                                                        </mat-cell>
+      
+                                                    </ng-container>
+                                    
+                                                    <ng-container matColumnDef="loading">
+                                                        <mat-footer-cell *matFooterCellDef colspan="9">
+                                                            <mat-spinner [diameter]="20" ></mat-spinner>&nbsp;&nbsp;&nbsp;Loading data...
+                                                        </mat-footer-cell>
+                                                    </ng-container>
+                                    
+                                                    <ng-container matColumnDef="noData">
+                                                        <mat-footer-cell *matFooterCellDef colspan="10">
+                                                            No se encontraron registros.
+                                                        </mat-footer-cell>
+                                                    </ng-container>
+                                    
+                                                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                                    
+                                                    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                                                    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': load_data}"></mat-footer-row>
+                                                    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': no_data}"></mat-footer-row>
+                                            </mat-table>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </div>
+            </ng-container>
+            <br>
+            <div class="m-form__control" align="center">
+                <br>
+                <button type="button" (click)="onSubmit()" [hidden]="hide_save" matTooltip="Guardar"  mat-button color="bg-blue" [disabled]="glb_disabled">                
+                    <i class="far fa-save"></i>&nbsp; {{main_button}}
+                </button>
+                <button type="button" [hidden]="hide_load" matTooltip="No disponible"  mat-button color="bg-blue" >                
+                    <mat-icon><mat-spinner color="warn" [diameter]="20" ></mat-spinner></mat-icon> {{main_action}}
+                </button>
+                &nbsp;
+                <button type="button" (click)="go_back()" matTooltip="Cancelar registro y regresar al listado" color="bg-red" mat-button >                
+                    <i class="fas fa-times-circle"></i>&nbsp;  Cancelar
+                </button>
+            </div>
+    </div>
+</div>

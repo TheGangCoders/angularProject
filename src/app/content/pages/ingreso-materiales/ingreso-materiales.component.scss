@@ -1,0 +1,56 @@
+.mat-row{
+    min-width: 1800px;
+    width: 100%;
+}
+.mat-header-row {
+    min-width: 1800px;
+    width: 100%;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-color: white;
+}
+table {
+    width: 100%;
+}/*
+.head_back{
+    color: #1E1E2D;
+}*/
+
+.mat-column-Nro{
+    display: flex; 
+    max-width: 100px;
+    justify-content: flex-start; 
+    font-size: 12px; 
+}
+
+.mat-column-DocumentoCompra,
+.mat-column-DescripcionOperacion,
+.mat-column-Proveedor,
+.mat-column-descripcion,
+.mat-column-actions {
+    display: flex; 
+    max-width: 200px;
+    justify-content: center; 
+    font-size: 12px; 
+}
+
+.mat-column-NroDoc,
+.mat-column-codProveedor,
+.mat-column-unidadMedida,
+.mat-column-cantidad,
+.mat-column-precioActual,
+.mat-column-Total,
+.mat-column-FechaRegistro {
+    display: flex; 
+    max-width: 100px;
+    justify-content: center; 
+    font-size: 12px; 
+}
+
+.mat-column-Activo{ 
+    display: flex; 
+    justify-content: center; 
+    max-width: 80px;
+    font-size: 12px; 
+}

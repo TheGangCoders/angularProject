@@ -1,0 +1,135 @@
+<div class="content-wrapper px-4 py-2">
+    <div class="content-header">
+        <h1 class="text-dark">Lista de Materiales</h1>
+    </div>
+    <div class="content px-2">
+                
+        <div style="padding-bottom: 5px;"></div>
+        <div>
+            <form [formGroup]="form" >
+                <div class="row">
+                    <div class="col-sm-6 m--margin-bottom-10-mobile">
+                        <mat-form-field class="col-md-12 search-form-field">
+                            <input matInput formControlName="searchKey" placeholder="Buscar en la tabla..." autocomplete="off"
+                                class="mat-form-field mat-form-field-fluid" (keyup)="searchTable()">
+                            <mat-hint align="start">
+                                <strong>Buscar en todos los campos</strong>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                            
+                    <div class="col-sm-2 m--margin-bottom-10-mobile">
+                        <button type="button" mat-mini-fab color="bg-green" (click)="getMainList()" matTooltip="Iniciar Búsqueda">
+                            <i class="fas fa-search"></i>           
+                        </button>
+                    </div>
+                    <div class="col-sm-2 m--margin-bottom-10-mobile">
+                    </div>
+                    <div class="col-md-2 m--margin-bottom-10-mobile">
+                        <button mat-button color="bg-yellow" matTooltip="Crear nuevo material" [routerLink]="['/material/add']">
+                            <i class="fas fa-plus-circle"></i>&nbsp;Agregar
+                        </button>
+                        &nbsp;
+                    </div>
+                </div>                                
+            </form>
+        </div>
+        <div style="padding-bottom: 10px;"></div>
+        <div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="mat-table__wrapper">
+                    <mat-table class="lmat-elevation-z8" [dataSource]="listData" matSort perfectScrollbar>
+  
+                        <ng-container matColumnDef="Nro">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Nro</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{getNumber_byItem(lesson)}}</mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="Descripcion">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.materialDescripcion}}</mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="Precio">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.precioActual | currency: 'S/.'}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Grupo">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Grupo</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.grupoMaterial}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="CodProveedor">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Código Proveedor</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.codProveedor}}</mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="Cantidad">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.cantidad}}</mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="UnidadMedida">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Unidad Medida</mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">{{lesson.unidadMedida}}</mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="Activo">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header class="head_back">Activo</mat-header-cell>
+                          <mat-cell *matCellDef="let lesson">
+                            <span class="m-badge m-badge--{{ getCssClassByEstado(lesson.activo) }} m-badge--wide">{{getEstadoString(lesson.activo)}}</span>
+                          </mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef>
+                                Actions
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let lesson">                              
+  
+                                <button  mat-icon-button style="color: #00A09D !important" type="button" 
+                                [routerLink]="['/material/edit']" [queryParams]="{id: lesson.materialId}" matTooltip="Editar Material">
+                                  <mat-icon>create</mat-icon>
+                                </button>
+  
+                                <!-- <button  mat-icon-button style="color: #b7343d !important" type="button" 
+                                (click)="eliminarActivar(lesson.Banco, false)" matTooltip="Eliminar Banco">
+                                    <mat-icon>delete</mat-icon>
+                                </button> -->
+  
+                            </mat-cell>
+                        </ng-container>
+  
+                        <ng-container matColumnDef="loading">
+                            <mat-footer-cell *matFooterCellDef colspan="5">
+                                Loading data...
+                            </mat-footer-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="noData">
+                            <mat-footer-cell *matFooterCellDef colspan="5">
+                                No se encontraron registros.
+                            </mat-footer-cell>
+                        </ng-container>
+  
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  
+                        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': listData!=null}">
+                        </mat-footer-row>
+                        <mat-footer-row *matFooterRowDef="['noData']"
+                            [ngClass]="{'hide': !(listData!=null && listData.data.length==0)}"></mat-footer-row>
+                    </mat-table>
+                </div>
+                <!-- start: BOTTOM -->
+                <div class="mat-table__bottom">
+                    <mat-spinner [diameter]="20" *ngIf=" array_dataList == null"></mat-spinner>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 50, 100, 200]" [pageSize]="5" showFirstLastButtons>
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

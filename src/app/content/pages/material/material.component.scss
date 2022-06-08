@@ -1,0 +1,44 @@
+.mat-row{
+    min-width: 1060px;
+    width: 100%;
+}
+.mat-header-row {
+    min-width: 1060px;
+    width: 100%;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-color: white;
+}
+table {
+    width: 100%;
+}/*
+.head_back{
+    color: #1E1E2D;
+}*/
+
+.mat-column-Nro{
+    display: flex; 
+    max-width: 100px;
+    justify-content: flex-start; 
+    font-size: 12px; 
+}
+
+.mat-column-Descripcion,
+.mat-column-Precio,
+.mat-column-Grupo,
+.mat-column-Cantidad,
+.mat-column-UnidadMedida,
+.mat-column-actions {
+    display: flex; 
+    max-width: 200px;
+    justify-content: center; 
+    font-size: 12px; 
+}
+
+.mat-column-Activo{ 
+    display: flex; 
+    justify-content: center; 
+    max-width: 80px;
+    font-size: 12px; 
+}

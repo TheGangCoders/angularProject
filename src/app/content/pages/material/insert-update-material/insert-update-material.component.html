@@ -1,0 +1,113 @@
+<div class="content-wrapper px-4 py-2">
+    <div class="content-header">
+        <h1 class="text-dark">{{main_button}} Material</h1>
+    </div>
+    <div class="content px-2">
+        <ng-container mPortletBody>
+            <form [formGroup]="formMACRO" (ngSubmit)="onSubmit()" class="m-form m-form--group-seperator-dashed">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <div class="row">
+
+                            <div class="col-sm-5 m--margin-bottom-10-mobile">
+                                <mat-form-field class="col-md-12 search-form-field">
+                                    <input  formControlName="Descripcion" placeholder="Descripción Material" matInput required>
+                                    <mat-error>
+                                            Descripción
+                                        <strong>es obligatorio.</strong>
+                                    </mat-error>
+                                    <mat-hint align="start" [hidden]="formMACRO.controls['Descripcion'].value">Por favor Ingrese
+                                        <strong>Descripción</strong>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-3 m--margin-bottom-10-mobile">
+                              <mat-form-field class="col-md-12 search-form-field">
+                                  <input  formControlName="CodProveedor" placeholder="Código Proveedor" matInput required>
+                                  <mat-error>
+                                          Código Proveedor
+                                      <strong>es obligatorio.</strong>
+                                  </mat-error>
+                                  <mat-hint align="start" [hidden]="formMACRO.controls['CodProveedor'].value">Por favor Ingrese
+                                      <strong>Código Proveedor</strong>
+                                  </mat-hint>
+                              </mat-form-field>
+                          </div>
+                            <div class="col-sm-2 m--margin-bottom-10-mobile">
+                                <mat-form-field class="col-md-12 search-form-field">
+                                    <input  formControlName="Precio" type="number" placeholder="Precio" matInput required>
+                                    <mat-error>
+                                            Precio
+                                        <strong>es obligatorio.</strong>
+                                    </mat-error>
+                                    <mat-hint align="start" [hidden]="formMACRO.controls['Precio'].value">Por favor Ingrese
+                                        <strong>Precio</strong>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-2 m--margin-bottom-10-mobile">
+                              <mat-form-field class="col-md-12 search-form-field">
+                                <mat-select #singleSelect class="mat-form-field mat-form-field-fluid" formControlName="UnidadMedida" placeholder="Unidad de Medida">
+                                  <mat-option *ngFor="let unidad of arrayUnidadMedida" [value]="unidad.unidadMedidaId">
+                                    {{unidad.abreviatura}}
+                                  </mat-option>
+                                </mat-select>
+                                <mat-hint align="start" [hidden]="formMACRO.controls['UnidadMedida'].value">Por favor Seleccione
+                                  <strong>Unidad de Medida</strong>
+                                </mat-hint>
+                                <mat-error>Unidad de Medida
+                                    <strong>es obligatorio.</strong>
+                                </mat-error>
+                              </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-3 m--margin-bottom-10-mobile">
+                                <mat-form-field class="col-md-12 search-form-field">
+                                  <mat-select #singleSelect class="mat-form-field mat-form-field-fluid" formControlName="GrupoMaterial" placeholder="Grupo de Material">
+                                    <mat-option *ngFor="let grupo of arrayGrupoMaterial" [value]="grupo.grupoMaterialesId">
+                                      {{grupo.descripcion}}
+                                    </mat-option>
+                                  </mat-select>
+                                  <mat-hint align="start" [hidden]="formMACRO.controls['GrupoMaterial'].value">Por favor Seleccione
+                                    <strong>Grupo de Material</strong>
+                                  </mat-hint>
+                                  <mat-error>Grupo de Material
+                                      <strong>es obligatorio.</strong>
+                                  </mat-error>
+                                </mat-form-field>
+                              </div>      
+                            <!-- <div class="col-sm-1 centrado" style="margin-top: 20px;">
+                                <strong>Activo</strong>
+                            </div>
+                            <div class="col-sm-1 centrado" style="margin-top: 20px;">
+                                <mat-checkbox class="example-margin" formControlName="Activo"></mat-checkbox>
+                            </div> -->
+                        </div>
+                        <br>
+                        <hr>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </form>
+        </ng-container>
+        <br>        
+
+      <div class="m-form__control" align="center">
+          <br>
+          <button *ngIf="gbl_Id == null" type="button" (click)="onSubmit()" [hidden]="hide_save" matTooltip="Guardar"  mat-button color="bg-blue">                
+                <i class="fas fa-save"></i>&nbsp; {{main_button}}
+          </button>
+          <button *ngIf="gbl_Id != null" type="button" (click)="onSubmit()" [hidden]="hide_save" matTooltip="Guardar"  mat-button color="bg-blue">                
+            <i class="fas fa-sync-alt"></i>&nbsp; {{update_button}}
+          </button>
+          <button type="button" [hidden]="hide_load" matTooltip="No disponible"  mat-button color="bg-blue" >                
+              <mat-icon><mat-spinner color="warn" [diameter]="20" ></mat-spinner></mat-icon> {{update_button}}
+          </button>
+          &nbsp;
+          <button type="button" (click)="go_back()" matTooltip="Cancelar registro y regresar al listado" color="bg-red" mat-button >                
+            <i class="fas fa-power-off"></i>&nbsp;  Cancelar
+          </button>
+      </div>
+    </div>
+</div>
