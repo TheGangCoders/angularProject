@@ -7,7 +7,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:5000/api/Usuario/';
+  baseUrl = 'https://upcwebapi.azurewebsites.net/api/Usuario/';
   // baseUrl = 'http://webapi-dev.us-west-2.elasticbeanstalk.com/api/Usuario/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
