@@ -33,6 +33,15 @@ jobs:
           skip_api_build: true
           #app_build_command: 'npm run build-prod'
           ###### End of Repository/Build Configurations ######
+      - name: Slack notifier 2
+        uses: act10ns/slack@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#upccicd'
+        if: always()
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
